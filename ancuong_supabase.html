@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AN CUONG INT. — Nội Thất Cao Cấp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+/* ===== (toàn bộ CSS giữ nguyên từ file gốc) ===== */
+:root{--cream:#f5f0e8;--cream-dark:#ede8de;--brown:#5c3d2e;--brown-dark:#3d2416;--brown-mid:#7a5240;--text:#1a1410;--text-muted:#8a7a6e;--border:#d4c9b8;--white:#faf8f5;--gold:#b8965a;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+[data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+[data-reveal].revealed{opacity:1;transform:translateY(0);}
+[data-reveal-delay="1"]{transition-delay:.1s}[data-reveal-delay="2"]{transition-delay:.2s}[data-reveal-delay="3"]{transition-delay:.3s}[data-reveal-delay="4"]{transition-delay:.4s}
+#page-transition{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--brown-dark);z-index:9999;pointer-events:none;opacity:0;transition:opacity .4s ease;}
+#page-transition.active{opacity:1;pointer-events:all;}
+.page{display:none}.page.active{display:block;animation:fadeIn .5s ease}
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(245,240,232,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:all .3s ease;}
+header.scrolled{background:rgba(245,240,232,.98);box-shadow:0 2px 20px rgba(92,61,46,.08);}
+nav{max-width:1400px;margin:0 auto;padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:.12em;color:var(--text);text-decoration:none;cursor:pointer;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--text);text-decoration:none;cursor:pointer;position:relative;padding-bottom:2px;transition:color .3s;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brown);transition:width .3s ease;}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}.nav-links a.active{color:var(--brown);}
+.nav-icons{display:flex;align-items:center;gap:20px;}
+.nav-icon{background:none;border:none;cursor:pointer;color:var(--text);display:flex;align-items:center;transition:color .3s;position:relative;}
+.nav-icon:hover{color:var(--brown);}
+.cart-badge{position:absolute;top:-6px;right:-8px;background:var(--brown);color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;}
+.page-banner{height:320px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;position:relative;margin-top:70px;overflow:hidden;}
+.page-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,20,16,.5),rgba(26,20,16,.3));}
+.page-banner-content{position:relative;z-index:1;text-align:center;color:white;}
+.page-banner h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;animation:fadeUp .8s ease forwards;}
+.breadcrumb{font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.8;margin-top:12px;animation:fadeUp .8s .2s ease both;}
+.breadcrumb span{opacity:.6;margin:0 8px;}
+.section{padding:80px 40px;max-width:1400px;margin:0 auto;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;letter-spacing:.08em;text-align:center;margin-bottom:16px;}
+.section-subtitle{text-align:center;font-size:14px;color:var(--text-muted);font-weight:300;letter-spacing:.05em;max-width:600px;margin:0 auto 56px;line-height:1.7;}
+.hero{height:100vh;min-height:700px;background:url('https://images.unsplash.com/photo-1618220179428-22790b461013?w=1800') center/cover no-repeat;display:flex;align-items:center;position:relative;margin-top:70px;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,20,16,.7) 0%,rgba(26,20,16,.2) 100%);}
+.hero-content{position:relative;z-index:1;padding:0 80px;color:white;}
+.hero-tag{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;animation:slideRight .8s .3s ease both;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,7vw,96px);font-weight:300;line-height:1.05;letter-spacing:.02em;margin-bottom:28px;animation:fadeUp .9s .4s ease both;}
+.hero p{font-size:16px;font-weight:300;line-height:1.8;max-width:480px;opacity:.85;margin-bottom:44px;animation:fadeUp .9s .5s ease both;}
+.hero-cta{display:flex;gap:16px;animation:fadeUp .9s .6s ease both;}
+.btn-primary{background:var(--brown);color:white;border:none;padding:16px 40px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s ease;}
+.btn-primary:hover{background:var(--brown-dark);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:white;border:1px solid rgba(255,255,255,.6);padding:16px 40px;font-family:'Jost',sans-serif;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s ease;}
+.btn-outline:hover{border-color:white;background:rgba(255,255,255,.1);}
+.features-strip{background:var(--brown-dark);padding:28px 80px;display:flex;justify-content:center;gap:80px;}
+.feature-item{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.85);}
+.feature-item svg{color:var(--gold);flex-shrink:0;}
+.feature-item div{font-size:11px;letter-spacing:.1em;line-height:1.6;}
+.feature-item strong{display:block;font-weight:500;color:white;margin-bottom:2px;}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.product-card{background:var(--white);overflow:hidden;cursor:pointer;transition:transform .4s ease,box-shadow .4s ease;}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(92,61,46,.12);}
+.product-img{aspect-ratio:4/3;overflow:hidden;position:relative;}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.product-card:hover .product-img img{transform:scale(1.05);}
+.product-badge{position:absolute;top:16px;left:16px;background:var(--brown);color:white;font-size:9px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;}
+.product-info{padding:24px;}
+.product-category{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;margin-bottom:8px;line-height:1.3;}
+.product-price{color:var(--brown);font-size:14px;font-weight:500;margin-bottom:20px;}
+.add-to-cart{width:100%;background:transparent;border:1px solid var(--border);padding:12px;font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s ease;color:var(--text);}
+.add-to-cart:hover{background:var(--brown);color:white;border-color:var(--brown);}
+.collections-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.collection-card{position:relative;overflow:hidden;cursor:pointer;}
+.collection-card img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s ease;}
+.collection-card:hover img{transform:scale(1.04);}
+.collection-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,16,.7) 0%,transparent 60%);display:flex;align-items:flex-end;padding:32px;}
+.collection-info{color:white;}
+.collection-info h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;letter-spacing:.05em;margin-bottom:8px;}
+.collection-info p{font-size:12px;opacity:.75;font-weight:300;line-height:1.6;}
+.collection-link{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+.products-layout{display:grid;grid-template-columns:240px 1fr;gap:48px;padding:60px 40px;max-width:1400px;margin:0 auto;}
+.filters-sidebar{position:sticky;top:90px;align-self:start;}
+.filter-group{margin-bottom:36px;border-bottom:1px solid var(--border);padding-bottom:28px;}
+.filter-group:last-child{border-bottom:none;}
+.filter-title{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;}
+.filter-item{display:flex;align-items:center;justify-content:space-between;padding:7px 0;cursor:pointer;font-size:13px;font-weight:300;transition:color .2s;}
+.filter-item:hover{color:var(--brown)}.filter-item.active{font-weight:500;color:var(--brown);}
+.filter-count{font-size:11px;color:var(--text-muted);}
+.filter-checkbox{display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:13px;font-weight:300;}
+.filter-checkbox input{accent-color:var(--brown);cursor:pointer;}
+.products-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.products-count{font-size:13px;color:var(--text-muted);font-weight:300;}
+.sort-select{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-muted);}
+.sort-select select{border:1px solid var(--border);background:var(--white);padding:8px 32px 8px 12px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a7a6e'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+.products-grid-main{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:56px;}
+.page-btn{width:38px;height:38px;border:1px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:all .2s;}
+.page-btn:hover,.page-btn.active{background:var(--brown);color:white;border-color:var(--brown);}
+.collections-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:80px 40px;max-width:1400px;margin:0 auto;}
+.collection-page-card{cursor:pointer;}
+.collection-page-img{aspect-ratio:16/10;overflow:hidden;margin-bottom:24px;}
+.collection-page-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.collection-page-card:hover .collection-page-img img{transform:scale(1.04);}
+.collection-page-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;}
+.collection-page-desc{font-size:13px;color:var(--text-muted);font-weight:300;line-height:1.7;margin-bottom:20px;}
+.collection-explore{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);font-weight:500;cursor:pointer;transition:gap .3s;}
+.collection-explore:hover{gap:14px;}
+.projects-section{padding:80px 40px;max-width:1400px;margin:0 auto;}
+.projects-tabs{display:flex;justify-content:center;gap:0;margin-bottom:56px;border-bottom:1px solid var(--border);}
+.projects-tab{padding:12px 28px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:400;cursor:pointer;border:none;background:none;color:var(--text-muted);position:relative;transition:color .3s;}
+.projects-tab::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--brown);transform:scaleX(0);transition:transform .3s;}
+.projects-tab.active{color:var(--brown)}.projects-tab.active::after{transform:scaleX(1);}
+.projects-masonry{columns:3;column-gap:20px;}
+.project-item{break-inside:avoid;margin-bottom:20px;position:relative;overflow:hidden;cursor:pointer;}
+.project-item img{width:100%;display:block;transition:transform .6s ease;}
+.project-item:hover img{transform:scale(1.04);}
+.project-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(26,20,16,.85) 0%,transparent 100%);padding:24px 20px 20px;transform:translateY(10px);opacity:0;transition:all .4s ease;}
+.project-item:hover .project-overlay{opacity:1;transform:translateY(0);}
+.project-name{color:white;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;}
+.project-meta{color:rgba(255,255,255,.7);font-size:11px;margin-top:4px;}
+.news-section{padding:60px 40px 80px;max-width:1400px;margin:0 auto;}
+.news-tabs{display:flex;justify-content:center;gap:0;margin-bottom:56px;border-bottom:1px solid var(--border);}
+.news-tab{padding:12px 24px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:400;cursor:pointer;border:none;background:none;color:var(--text-muted);position:relative;transition:color .3s;}
+.news-tab::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--brown);transform:scaleX(0);transition:transform .3s;}
+.news-tab.active{color:var(--brown)}.news-tab.active::after{transform:scaleX(1);}
+.news-featured{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:64px;padding-bottom:64px;border-bottom:1px solid var(--border);}
+.news-featured-img{aspect-ratio:4/3;overflow:hidden;}
+.news-featured-img img{width:100%;height:100%;object-fit:cover;}
+.news-cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);font-weight:500;margin-bottom:16px;}
+.news-cat-date{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.news-date{font-size:11px;color:var(--text-muted);letter-spacing:.05em;}
+.news-featured h2{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:400;line-height:1.2;margin-bottom:20px;}
+.news-excerpt{font-size:14px;color:var(--text-muted);font-weight:300;line-height:1.8;margin-bottom:32px;}
+.read-more{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);cursor:pointer;font-weight:500;background:none;border:none;transition:gap .3s;}
+.read-more:hover{gap:16px;}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.news-card{cursor:pointer;}
+.news-card-img{aspect-ratio:4/3;overflow:hidden;margin-bottom:20px;}
+.news-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.news-card:hover .news-card-img img{transform:scale(1.04);}
+.news-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;line-height:1.3;margin-bottom:12px;}
+.news-card p{font-size:13px;color:var(--text-muted);line-height:1.7;font-weight:300;margin-bottom:16px;}
+.load-more-btn{display:block;margin:56px auto 0;background:transparent;border:1px solid var(--brown);color:var(--brown);padding:14px 48px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.load-more-btn:hover{background:var(--brown);color:white;}
+.contact-section{padding:80px 40px;max-width:1400px;margin:0 auto;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;margin-bottom:80px;}
+.contact-left h2{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;margin-bottom:20px;line-height:1.2;}
+.contact-left p{font-size:14px;color:var(--text-muted);font-weight:300;line-height:1.8;margin-bottom:40px;}
+.contact-info-item{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start;}
+.contact-info-item svg{color:var(--brown);flex-shrink:0;margin-top:2px;}
+.contact-info-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;}
+.contact-info-value{font-size:13px;font-weight:400;line-height:1.5;}
+.contact-form-box{background:var(--white);padding:48px;}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;margin-bottom:32px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;font-weight:500;}
+.form-input{width:100%;border:1px solid var(--border);background:var(--cream);padding:14px 16px;font-family:'Jost',sans-serif;font-size:14px;font-weight:300;color:var(--text);transition:border-color .3s;outline:none;}
+.form-input:focus{border-color:var(--brown);}
+select.form-input{cursor:pointer;appearance:none;}
+textarea.form-input{resize:vertical;min-height:120px;}
+.submit-btn{width:100%;background:var(--brown);color:white;border:none;padding:18px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s;margin-top:8px;}
+.submit-btn:hover{background:var(--brown-dark);}
+.showrooms-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;letter-spacing:.1em;text-transform:uppercase;text-align:center;margin-bottom:48px;}
+.showrooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.showroom-img{aspect-ratio:4/3;overflow:hidden;margin-bottom:20px;}
+.showroom-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.showroom-card:hover .showroom-img img{transform:scale(1.04);}
+.showroom-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;margin-bottom:12px;}
+.showroom-detail{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text-muted);font-weight:300;margin-bottom:8px;line-height:1.5;}
+.showroom-detail svg{flex-shrink:0;margin-top:1px;}
+.cart-section{padding:60px 40px 80px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:56px;}
+.cart-table-header{display:grid;grid-template-columns:1fr 160px 180px 40px;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);font-weight:500;}
+.cart-item{display:grid;grid-template-columns:1fr 160px 180px 40px;gap:16px;align-items:center;padding:28px 0;border-bottom:1px solid var(--border);}
+.cart-item-info{display:flex;gap:20px;align-items:center;}
+.cart-item-img{width:90px;height:70px;object-fit:cover;flex-shrink:0;}
+.cart-item-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;margin-bottom:6px;}
+.cart-item-meta{font-size:11px;color:var(--text-muted);font-weight:300;}
+.cart-item-price-unit{font-size:13px;color:var(--brown);font-weight:500;margin-top:4px;}
+.qty-control{display:flex;align-items:center;border:1px solid var(--border);width:110px;}
+.qty-btn{width:36px;height:36px;border:none;background:transparent;cursor:pointer;font-size:16px;color:var(--text);transition:background .2s;display:flex;align-items:center;justify-content:center;}
+.qty-btn:hover{background:var(--cream-dark);}
+.qty-input{flex:1;border:none;text-align:center;font-family:'Jost',sans-serif;font-size:14px;background:transparent;width:40px;}
+.cart-total-price{font-size:15px;font-weight:500;color:var(--brown);}
+.delete-btn{border:none;background:none;cursor:pointer;color:var(--text-muted);transition:color .2s;display:flex;align-items:center;}
+.delete-btn:hover{color:#c0392b;}
+.cart-summary{background:var(--white);padding:36px;align-self:start;position:sticky;top:90px;}
+.cart-summary-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;margin-bottom:28px;}
+.summary-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:12px;color:var(--text-muted);font-weight:300;}
+.summary-row strong{color:var(--text);font-weight:500;}
+.summary-total{display:flex;justify-content:space-between;font-size:18px;font-weight:500;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);}
+.summary-total span{color:var(--brown);}
+.coupon-input-wrap{display:flex;gap:0;margin:24px 0;}
+.coupon-input{flex:1;border:1px solid var(--border);border-right:none;padding:12px 16px;font-family:'Jost',sans-serif;font-size:13px;outline:none;background:var(--cream);}
+.coupon-apply{background:var(--brown-dark);color:white;border:none;padding:12px 20px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .3s;}
+.coupon-apply:hover{background:var(--brown);}
+.checkout-btn{width:100%;background:var(--brown);color:white;border:none;padding:18px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s;margin-top:8px;}
+.checkout-btn:hover{background:var(--brown-dark);}
+.continue-btn{width:100%;background:transparent;color:var(--text);border:1px solid var(--border);padding:15px;font-family:'Jost',sans-serif;font-size:11px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:10px;}
+.continue-btn:hover{border-color:var(--brown);color:var(--brown);}
+.secure-badge{display:flex;align-items:center;gap:6px;justify-content:center;font-size:11px;color:var(--text-muted);margin-top:16px;font-weight:300;}
+.checkout-section{padding:60px 40px 80px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:56px;}
+.checkout-step{margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--border);}
+.checkout-step:last-child{border-bottom:none;}
+.step-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.step-num{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--brown);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--brown);flex-shrink:0;}
+.step-title{font-size:13px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;}
+.payment-option{border:1px solid var(--border);padding:18px 20px;margin-bottom:12px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:border-color .3s;}
+.payment-option.selected{border-color:var(--brown);background:rgba(92,61,46,.03);}
+.payment-radio{width:18px;height:18px;border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.payment-option.selected .payment-radio{border-color:var(--brown);}
+.payment-option.selected .payment-radio::after{content:'';width:8px;height:8px;background:var(--brown);border-radius:50%;}
+.payment-label{font-size:13px;font-weight:400;}
+.payment-icon{margin-left:auto;width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;}
+.bank-details{background:var(--cream-dark);padding:20px;margin-top:12px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;}
+.qr-code{width:80px;height:80px;background:white;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--text-muted);}
+.bank-info{font-size:12px;color:var(--text-muted);font-weight:300;}
+.bank-info div{display:flex;gap:12px;margin-bottom:6px;}
+.bank-info strong{color:var(--text);font-weight:500;min-width:100px;}
+.order-summary-box{background:var(--white);padding:36px;align-self:start;position:sticky;top:90px;}
+.order-items{margin-bottom:24px;}
+.order-item{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);}
+.order-item:last-child{border-bottom:none;}
+.order-item-img{width:60px;height:48px;object-fit:cover;}
+.order-item-info{flex:1;}
+.order-item-name{font-size:13px;font-weight:500;margin-bottom:3px;}
+.order-item-detail{font-size:11px;color:var(--text-muted);font-weight:300;}
+.order-item-price{font-size:13px;color:var(--brown);font-weight:500;}
+.place-order-btn{width:100%;background:var(--brown);color:white;border:none;padding:18px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s;margin-top:20px;}
+.place-order-btn:hover{background:var(--brown-dark);}
+.account-section{padding:80px 40px;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.account-box{background:var(--white);padding:48px;}
+.account-box-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;}
+.account-box-desc{font-size:13px;color:var(--text-muted);font-weight:300;margin-bottom:32px;line-height:1.6;}
+.social-login{display:flex;gap:12px;margin-top:24px;}
+.social-btn{flex:1;border:1px solid var(--border);background:var(--white);padding:12px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:border-color .2s;}
+.social-btn:hover{border-color:var(--brown);}
+.divider{display:flex;align-items:center;gap:16px;margin:24px 0;font-size:11px;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.forgot-link{font-size:12px;color:var(--brown);text-decoration:underline;cursor:pointer;display:block;text-align:right;margin-top:8px;}
+.benefits-list{margin-top:24px;}
+.benefit-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-muted);font-weight:300;margin-bottom:12px;}
+.benefit-item svg{color:var(--brown);flex-shrink:0;}
+.register-btn{width:100%;border:1.5px solid var(--brown);background:transparent;color:var(--brown);padding:16px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:28px;}
+.register-btn:hover{background:var(--brown);color:white;}
+.search-overlay{position:fixed;inset:0;background:rgba(26,20,16,.5);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;}
+.search-overlay.active{display:flex;animation:fadeIn .3s ease;}
+.search-modal{background:var(--white);width:100%;max-width:900px;border-radius:2px;animation:fadeUp .3s ease;}
+.search-bar{display:flex;align-items:center;gap:16px;padding:24px 32px;border-bottom:1px solid var(--border);}
+.search-bar input{flex:1;border:none;background:transparent;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;outline:none;color:var(--text);}
+.search-close{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.search-close:hover{background:var(--brown);color:white;border-color:var(--brown);}
+.search-body{display:grid;grid-template-columns:1fr 1.5fr;gap:0;padding:36px 32px;}
+.search-suggestions h4{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;font-weight:500;}
+.suggestion-item{display:flex;align-items:center;gap:12px;padding:9px 0;font-size:13px;cursor:pointer;transition:color .2s;}
+.suggestion-item:hover{color:var(--brown);}
+.suggestion-item svg{color:var(--text-muted);flex-shrink:0;}
+.search-categories{margin-top:28px;}
+.category-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.chip{background:var(--cream-dark);border:1px solid var(--border);padding:7px 16px;font-size:11px;letter-spacing:.05em;cursor:pointer;transition:all .2s;}
+.chip:hover{background:var(--brown);color:white;border-color:var(--brown);}
+.search-products{border-left:1px solid var(--border);padding-left:32px;}
+.search-products-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.search-products-header h4{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);font-weight:500;}
+.view-all{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brown);cursor:pointer;font-weight:500;}
+.search-products-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.search-product-item{display:flex;gap:12px;cursor:pointer;padding:8px;transition:background .2s;}
+.search-product-item:hover{background:var(--cream);}
+.search-product-img{width:80px;height:64px;object-fit:cover;flex-shrink:0;}
+.search-product-name{font-size:13px;font-weight:400;line-height:1.3;margin-bottom:4px;}
+.search-product-price{font-size:12px;color:var(--brown);}
+footer{background:var(--brown-dark);color:rgba(255,255,255,.8);padding:60px 80px 32px;margin-top:0;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:56px;margin-bottom:48px;}
+.footer-brand .logo{color:white;display:block;margin-bottom:16px;}
+.footer-brand p{font-size:12px;font-weight:300;line-height:1.8;opacity:.7;margin-bottom:24px;}
+.social-links{display:flex;gap:12px;}
+.social-link{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;color:rgba(255,255,255,.7);}
+.social-link:hover{border-color:white;color:white;}
+.footer-col h4{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:white;margin-bottom:20px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul li a{font-size:12px;font-weight:300;color:rgba(255,255,255,.65);text-decoration:none;cursor:pointer;transition:color .2s;}
+.footer-col ul li a:hover{color:white;}
+.footer-contact-item{display:flex;gap:10px;margin-bottom:12px;font-size:12px;font-weight:300;color:rgba(255,255,255,.65);align-items:flex-start;}
+.footer-contact-item svg{opacity:.7;flex-shrink:0;margin-top:1px;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{font-size:11px;font-weight:300;opacity:.5;}
+.footer-bottom-links{display:flex;gap:24px;}
+.footer-bottom-links a{font-size:11px;font-weight:300;opacity:.5;color:white;text-decoration:none;cursor:pointer;transition:opacity .2s;}
+.footer-bottom-links a:hover{opacity:.8;}
+.toast{position:fixed;bottom:32px;right:32px;background:var(--brown-dark);color:white;padding:16px 24px;font-size:13px;font-weight:400;z-index:9999;animation:fadeUp .4s ease;letter-spacing:.05em;}
+.loading-spinner{text-align:center;padding:60px;color:var(--text-muted);font-size:13px;letter-spacing:.1em;}
+.loading-spinner::after{content:'';display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--brown);border-radius:50%;animation:spin .8s linear infinite;margin-left:10px;vertical-align:middle;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:1024px){.products-grid{grid-template-columns:1fr 1fr}.products-grid-main{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.news-featured{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="page-transition"></div>
+
+<!-- SEARCH MODAL -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-modal">
+    <div class="search-bar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Sofa" oninput="handleSearch(this.value)">
+      <button class="search-close" onclick="closeSearch()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="search-body">
+      <div class="search-suggestions">
+        <h4>Gợi ý từ khóa</h4>
+        <div class="suggestion-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Sofa da bò Ý cao cấp</div>
+        <div class="suggestion-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Sofa văng hiện đại</div>
+        <div class="suggestion-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Sofa góc chữ L</div>
+        <div class="suggestion-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Ghế thư giãn Armchair</div>
+        <div class="search-categories">
+          <h4>Danh mục liên quan</h4>
+          <div class="category-chips">
+            <div class="chip" onclick="navigate('products')">Phòng khách</div>
+            <div class="chip" onclick="navigate('products')">Sofa bọc da</div>
+            <div class="chip" onclick="navigate('products')">Sofa nỉ</div>
+            <div class="chip" onclick="navigate('products')">Bàn trà</div>
+          </div>
+        </div>
+      </div>
+      <div class="search-products">
+        <div class="search-products-header">
+          <h4 id="searchResultCount">Sản phẩm nổi bật</h4>
+          <span class="view-all" onclick="navigate('products');closeSearch();">Xem tất cả</span>
+        </div>
+        <div class="search-products-grid" id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <nav>
+    <span class="logo" onclick="navigate('home')">AN CUONG INT.</span>
+    <ul class="nav-links">
+      <li><a onclick="navigate('home')" data-page="home">Trang Chủ</a></li>
+      <li><a onclick="navigate('products')" data-page="products">Sản Phẩm</a></li>
+      <li><a onclick="navigate('collections')" data-page="collections">Bộ Sưu Tập</a></li>
+      <li><a onclick="navigate('projects')" data-page="projects">Dự Án</a></li>
+      <li><a onclick="navigate('news')" data-page="news">Tin Tức</a></li>
+      <li><a onclick="navigate('contact')" data-page="contact">Liên Hệ</a></li>
+    </ul>
+    <div class="nav-icons">
+      <button class="nav-icon" onclick="openSearch()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="nav-icon" onclick="navigate('account')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="nav-icon" onclick="navigate('cart')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge" id="cartBadge">0</span></button>
+    </div>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">✦ Nội thất cao cấp — Kể câu chuyện của bạn</div>
+      <h1>Nghệ Thuật<br>Sống Đẳng Cấp</h1>
+      <p>Chúng tôi kiến tạo không gian sống hoàn hảo từ những chất liệu cao cấp nhất, mang lại trải nghiệm thẩm mỹ tinh tế cho ngôi nhà của bạn.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="navigate('products')">Khám phá sản phẩm</button>
+        <button class="btn-outline" onclick="navigate('projects')">Xem dự án</button>
+      </div>
+    </div>
+  </div>
+  <div style="background:var(--brown-dark);">
+    <div class="features-strip">
+      <div class="feature-item" data-reveal><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><strong>Bảo hành 5 năm</strong>Cam kết chất lượng vượt trội</div></div>
+      <div class="feature-item" data-reveal data-reveal-delay="2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><div><strong>Giao hàng & Lắp đặt</strong>Trên toàn quốc</div></div>
+      <div class="feature-item" data-reveal data-reveal-delay="3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><div><strong>Tư vấn thiết kế</strong>Miễn phí tại nhà</div></div>
+      <div class="feature-item" data-reveal data-reveal-delay="4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div><strong>Chất liệu Ý - Pháp</strong>Nhập khẩu chính hãng</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div data-reveal><div class="section-title">Sản Phẩm Nổi Bật</div></div>
+    <div data-reveal><div class="section-subtitle">Bộ sưu tập được tuyển chọn tinh tế, kết hợp giữa thiết kế đương đại và chất lượng thủ công hàng đầu thế giới.</div></div>
+    <div class="products-grid" id="homeProductsGrid"><div class="loading-spinner">Đang tải sản phẩm</div></div>
+  </div>
+  <div style="background:var(--cream-dark);padding:80px 0;">
+    <div class="section" style="padding-top:0;padding-bottom:0;">
+      <div data-reveal><div class="section-title">Bộ Sưu Tập Không Gian</div></div>
+      <div data-reveal><div class="section-subtitle">Khám phá những phong cách thiết kế độc đáo, được kiến tạo để mang lại trải nghiệm sống thăng hoa và trọn vẹn.</div></div>
+      <div class="collections-grid">
+        <div class="collection-card" data-reveal onclick="navigate('collections')"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=800" alt="Modern Elegance"><div class="collection-overlay"><div class="collection-info"><h3>Modern Elegance</h3><p>Sự giao thoa hoàn hảo giữa kiến trúc hiện đại và chất liệu cao cấp.</p><div class="collection-link">Khám phá ngay →</div></div></div></div>
+        <div class="collection-card" data-reveal data-reveal-delay="2" onclick="navigate('collections')"><img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800" alt="Pure Minimal"><div class="collection-overlay"><div class="collection-info"><h3>Pure Minimal</h3><p>Tôn vinh vẻ đẹp của sự giản đơn và không gian tinh tại.</p><div class="collection-link">Khám phá ngay →</div></div></div></div>
+        <div class="collection-card" data-reveal onclick="navigate('collections')"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800" alt="Classic Luxury"><div class="collection-overlay"><div class="collection-info"><h3>Classic Luxury</h3><p>Định nghĩa lại sự xa xỉ qua từng chi tiết thủ công tinh tế.</p><div class="collection-link">Khám phá ngay →</div></div></div></div>
+        <div class="collection-card" data-reveal data-reveal-delay="2" onclick="navigate('collections')"><img src="https://images.unsplash.com/photo-1583845112203-29329902332e?w=800" alt="Nordic Breeze"><div class="collection-overlay"><div class="collection-info"><h3>Nordic Breeze</h3><p>Cảm hứng từ vùng Bắc Âu, chan hòa ánh sáng tự nhiên.</p><div class="collection-link">Khám phá ngay →</div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div data-reveal><div class="section-title">Dự Án Tiêu Biểu</div></div>
+    <div data-reveal><div class="section-subtitle">Những công trình nội thất xuất sắc được thiết kế và thi công bởi đội ngũ chuyên gia của chúng tôi.</div></div>
+    <div class="products-grid" id="homeProjectsGrid"><div class="loading-spinner">Đang tải dự án</div></div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo">AN CUONG INT.</span><p>Thương hiệu nội thất cao cấp hàng đầu, mang đến những giải pháp không gian sống hoàn hảo và tinh tế nhất cho ngôi nhà của bạn.</p><div class="social-links"><div class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div></div></div>
+      <div class="footer-col"><h4>Liên Kết</h4><ul><li><a onclick="navigate('home')">Về chúng tôi</a></li><li><a onclick="navigate('products')">Sản phẩm</a></li><li><a onclick="navigate('collections')">Bộ sưu tập</a></li><li><a onclick="navigate('projects')">Dự án</a></li></ul></div>
+      <div class="footer-col"><h4>Hỗ Trợ</h4><ul><li><a href="#">Chính sách bảo hành</a></li><li><a href="#">Chính sách đổi trả</a></li><li><a href="#">Giao hàng & Lắp đặt</a></li><li><a href="#">Câu hỏi thường gặp</a></li></ul></div>
+      <div class="footer-col"><h4>Thông Tin Liên Hệ</h4><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>27B Nguyễn Đình Chiểu, Q.1, TP.HCM</div><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>1900 123 456</div><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@ancuong-int.vn</div></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 An Cuong Interior. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Điều khoản sử dụng</a><a href="#">Bảo mật thông tin</a></div></div>
+  </footer>
+</div>
+
+<!-- PRODUCTS PAGE -->
+<div class="page" id="page-products">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1800');"><div class="page-banner-content"><h1>Sản Phẩm</h1><div class="breadcrumb">Trang Chủ <span>›</span> Sản Phẩm</div></div></div>
+  <div class="products-layout">
+    <aside class="filters-sidebar">
+      <div class="filter-group">
+        <div class="filter-title">Danh Mục</div>
+        <div class="filter-item active" onclick="filterCategory('all',this)">Tất cả sản phẩm <span class="filter-count" id="countAll">(0)</span></div>
+        <div class="filter-item" onclick="filterCategory('sofa',this)">Sofa & Ghế băng <span class="filter-count" id="countSofa">(0)</span></div>
+        <div class="filter-item" onclick="filterCategory('ban',this)">Bàn các loại <span class="filter-count" id="countBan">(0)</span></div>
+        <div class="filter-item" onclick="filterCategory('ghe',this)">Ghế ăn & Ghế quầy bar <span class="filter-count" id="countGhe">(0)</span></div>
+        <div class="filter-item" onclick="filterCategory('giuong',this)">Giường ngủ <span class="filter-count" id="countGiuong">(0)</span></div>
+        <div class="filter-item" onclick="filterCategory('tu',this)">Tủ & Kệ lưu trữ <span class="filter-count" id="countTu">(0)</span></div>
+        <div class="filter-item" onclick="filterCategory('den',this)">Đèn & Đồ trang trí <span class="filter-count" id="countDen">(0)</span></div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-title">Khoảng Giá</div>
+        <label class="filter-checkbox"><input type="checkbox"> Dưới 10.000.000 đ</label>
+        <label class="filter-checkbox"><input type="checkbox"> 10.000.000 - 20.000.000 đ</label>
+        <label class="filter-checkbox"><input type="checkbox" checked style="accent-color:var(--brown)"> 20.000.000 - 50.000.000 đ</label>
+        <label class="filter-checkbox"><input type="checkbox"> Trên 50.000.000 đ</label>
+      </div>
+      <div class="filter-group">
+        <div class="filter-title">Chất Liệu</div>
+        <label class="filter-checkbox"><input type="checkbox" checked style="accent-color:var(--brown)"> Gỗ tự nhiên (Sồi, Óc chó)</label>
+        <label class="filter-checkbox"><input type="checkbox"> Gỗ công nghiệp cao cấp</label>
+        <label class="filter-checkbox"><input type="checkbox"> Da bò Italy</label>
+        <label class="filter-checkbox"><input type="checkbox"> Vải nỉ chống thấm</label>
+        <label class="filter-checkbox"><input type="checkbox"> Kim loại / Hợp kim</label>
+      </div>
+    </aside>
+    <div class="products-main">
+      <div class="products-toolbar">
+        <div class="products-count" id="productsCountLabel">Đang tải...</div>
+        <div class="sort-select">Sắp xếp theo: <select id="sortSelect" onchange="renderProductsGrid()"><option value="newest">Hàng mới nhất</option><option value="price_asc">Giá thấp đến cao</option><option value="price_desc">Giá cao đến thấp</option></select></div>
+      </div>
+      <div class="products-grid-main" id="productsGridMain"><div class="loading-spinner">Đang tải sản phẩm</div></div>
+      <div class="pagination"><button class="page-btn">‹</button><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><button class="page-btn">›</button></div>
+    </div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Điều khoản sử dụng</a><a href="#">Bảo mật thông tin</a></div></div></footer>
+</div>
+
+<!-- COLLECTIONS PAGE -->
+<div class="page" id="page-collections">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1618220179428-22790b461013?w=1800');"><div class="page-banner-content"><h1>Bộ Sưu Tập</h1><div class="breadcrumb">Trang Chủ <span>›</span> Bộ Sưu Tập</div></div></div>
+  <div style="text-align:center;padding:70px 40px 0;"><div class="section-title" data-reveal>Cảm Hứng Không Gian</div><div class="section-subtitle" data-reveal>Khám phá những phong cách thiết kế độc đáo, được kiến tạo để mang lại trải nghiệm sống thăng hoa và trọn vẹn nhất.</div></div>
+  <div class="collections-page-grid">
+    <div class="collection-page-card" data-reveal onclick="navigate('products')"><div class="collection-page-img"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=900" alt="Modern Elegance"></div><div class="collection-page-name">Modern Elegance</div><div class="collection-page-desc">Sự giao thoa hoàn hảo giữa những đường nét dứt khoát của kiến trúc hiện đại và sự mềm mại của các chất liệu cao cấp.</div><span class="collection-explore">Khám phá ngay →</span></div>
+    <div class="collection-page-card" data-reveal data-reveal-delay="2" onclick="navigate('products')"><div class="collection-page-img"><img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=900" alt="Pure Minimal"></div><div class="collection-page-name">Pure Minimal</div><div class="collection-page-desc">Tôn vinh vẻ đẹp của sự giản đơn. Lược bỏ những chi tiết rườm rà để tập trung vào công năng và không gian tinh tại.</div><span class="collection-explore">Khám phá ngay →</span></div>
+    <div class="collection-page-card" data-reveal onclick="navigate('products')"><div class="collection-page-img"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=900" alt="Classic Luxury"></div><div class="collection-page-name">Classic Luxury</div><div class="collection-page-desc">Định nghĩa lại sự xa xỉ qua từng chi tiết chế tác thủ công, chất liệu da bò Italy và điểm nhấn kim loại sang trọng.</div><span class="collection-explore">Khám phá ngay →</span></div>
+    <div class="collection-page-card" data-reveal data-reveal-delay="2" onclick="navigate('products')"><div class="collection-page-img"><img src="https://images.unsplash.com/photo-1583845112203-29329902332e?w=900" alt="Nordic Breeze"></div><div class="collection-page-name">Nordic Breeze</div><div class="collection-page-desc">Lấy cảm hứng từ vùng Bắc Âu, mang đến cảm giác ấm áp, chan hòa ánh sáng và gần gũi với thiên nhiên nguyên sơ.</div><span class="collection-explore">Khám phá ngay →</span></div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;margin-top:40px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Điều khoản sử dụng</a><a href="#">Bảo mật thông tin</a></div></div></footer>
+</div>
+
+<!-- PROJECTS PAGE -->
+<div class="page" id="page-projects">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800');"><div class="page-banner-content"><h1>Dự Án Tiêu Biểu</h1><div class="breadcrumb">Trang Chủ <span>›</span> Dự Án</div></div></div>
+  <div class="projects-section">
+    <div style="text-align:center;margin-bottom:0;" data-reveal><div class="section-title">Kiến Tạo Không Gian</div><div class="section-subtitle">Khám phá những công trình nội thất xuất sắc được chúng tôi thiết kế và thi công, mang đến trải nghiệm sống đẳng cấp và trọn vẹn.</div></div>
+    <div class="projects-tabs">
+      <button class="projects-tab active" onclick="setProjectTab(this,'')">Tất Cả</button>
+      <button class="projects-tab" onclick="setProjectTab(this,'biet-thu')">Biệt Thự</button>
+      <button class="projects-tab" onclick="setProjectTab(this,'penthouse')">Penthouse</button>
+      <button class="projects-tab" onclick="setProjectTab(this,'can-ho')">Căn Hộ Cao Cấp</button>
+      <button class="projects-tab" onclick="setProjectTab(this,'nha-pho')">Nhà Phố</button>
+    </div>
+    <div class="projects-masonry" id="projectsGrid"><div class="loading-spinner">Đang tải dự án</div></div>
+    <div style="text-align:center;margin-top:48px;" data-reveal><button class="load-more-btn">Xem thêm dự án</button></div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;margin-top:40px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p></div></footer>
+</div>
+
+<!-- NEWS PAGE -->
+<div class="page" id="page-news">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1800');"><div class="page-banner-content"><h1>Tin Tức & Sự Kiện</h1><div class="breadcrumb">Trang Chủ <span>›</span> Tin Tức</div></div></div>
+  <div class="news-section">
+    <div class="news-tabs"><button class="news-tab active" onclick="filterNews('',this)">Tất Cả</button><button class="news-tab" onclick="filterNews('XU HƯỚNG',this)">Xu Hướng</button><button class="news-tab" onclick="filterNews('MẸO TRANG TRÍ',this)">Mẹo Trang Trí</button><button class="news-tab" onclick="filterNews('KIẾN THỨC',this)">Kiến Thức</button><button class="news-tab" onclick="filterNews('SỰ KIỆN',this)">Sự Kiện</button></div>
+    <div id="newsFeatured" data-reveal></div>
+    <div class="news-grid" id="newsGrid"><div class="loading-spinner">Đang tải tin tức</div></div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;margin-top:20px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p></div></footer>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1800');"><div class="page-banner-content"><h1>Liên Hệ</h1><div class="breadcrumb">Trang Chủ <span>›</span> Liên Hệ</div></div></div>
+  <div class="contact-section">
+    <div class="contact-grid">
+      <div data-reveal>
+        <h2>Kết nối với chúng tôi</h2>
+        <p>Chúng tôi luôn sẵn lòng lắng nghe và giải đáp mọi thắc mắc của bạn. Dù bạn cần tư vấn về không gian, thông tin sản phẩm hay dịch vụ thiết kế, đội ngũ chuyên gia của chúng tôi sẽ hỗ trợ tận tâm nhất.</p>
+        <div class="contact-info-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="contact-info-label">Trụ Sở Chính</div><div class="contact-info-value">27B Nguyễn Đình Chiểu, P. Đa Kao, Q.1, TP. Hồ Chí Minh</div></div></div>
+        <div class="contact-info-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><div class="contact-info-label">Hotline CSKH</div><div class="contact-info-value">1900 123 456 (8:00 - 20:00)</div></div></div>
+        <div class="contact-info-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="contact-info-label">Email Hỗ Trợ</div><div class="contact-info-value">contact@ancuong-int.vn</div></div></div>
+        <div class="contact-info-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="contact-info-label">Giờ Hoạt Động</div><div class="contact-info-value">Thứ 2 - Chủ Nhật: 08:30 - 20:30</div></div></div>
+      </div>
+      <div class="contact-form-box" data-reveal data-reveal-delay="2">
+        <div class="form-title">Gửi Thông Điệp</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Họ và Tên *</label><input class="form-input" id="contactName" type="text" placeholder="Nhập họ và tên"></div>
+          <div class="form-group"><label class="form-label">Số Điện Thoại *</label><input class="form-input" id="contactPhone" type="tel" placeholder="Nhập số điện thoại"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" id="contactEmail" type="email" placeholder="Nhập địa chỉ email"></div>
+        <div class="form-group"><label class="form-label">Chủ Đề Cần Hỗ Trợ</label><select class="form-input" id="contactSubject"><option>Chọn chủ đề...</option><option>Tư vấn sản phẩm</option><option>Thiết kế không gian</option><option>Báo giá</option><option>Khiếu nại</option></select></div>
+        <div class="form-group"><label class="form-label">Nội Dung Chi Tiết *</label><textarea class="form-input" id="contactMessage" placeholder="Bạn cần chúng tôi hỗ trợ vấn đề gì?"></textarea></div>
+        <button class="submit-btn" onclick="submitContact()">Gửi Yêu Cầu</button>
+      </div>
+    </div>
+    <div data-reveal>
+      <div class="showrooms-title">Hệ Thống Showroom</div>
+      <div class="showrooms-grid">
+        <div class="showroom-card"><div class="showroom-img"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600" alt="HCM"></div><div class="showroom-name">Flagship Store Hồ Chí Minh</div><div class="showroom-detail"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>27B Nguyễn Đình Chiểu, Q1, TP. HCM</div></div>
+        <div class="showroom-card"><div class="showroom-img"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600" alt="HN"></div><div class="showroom-name">Concept Store Hà Nội</div><div class="showroom-detail"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>102 Hào Nam, Q. Đống Đa, Hà Nội</div></div>
+        <div class="showroom-card"><div class="showroom-img"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600" alt="DN"></div><div class="showroom-name">Boutique Đà Nẵng</div><div class="showroom-detail"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>458 Nguyễn Văn Linh, Q. Thanh Khê, Đà Nẵng</div></div>
+      </div>
+    </div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;margin-top:20px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p></div></footer>
+</div>
+
+<!-- CART PAGE -->
+<div class="page" id="page-cart">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1800');"><div class="page-banner-content"><h1>Giỏ Hàng</h1><div class="breadcrumb">Trang Chủ <span>›</span> Giỏ Hàng</div></div></div>
+  <div class="cart-section">
+    <div>
+      <div class="cart-table-header"><div>Sản Phẩm</div><div>Số Lượng</div><div>Tổng Tiền</div><div></div></div>
+      <div id="cartItems"></div>
+    </div>
+    <div class="cart-summary" data-reveal>
+      <div class="cart-summary-title">Tổng Đơn Hàng</div>
+      <div class="summary-row"><span>Tạm tính</span><strong id="cartSubtotal">0 đ</strong></div>
+      <div class="summary-row"><span>Giảm giá</span><strong>0 đ</strong></div>
+      <div class="coupon-input-wrap"><input class="coupon-input" placeholder="Nhập mã giảm giá"><button class="coupon-apply">Áp Dụng</button></div>
+      <div class="summary-total"><span>Tổng cộng</span><span id="cartTotal">0 đ</span></div>
+      <button class="checkout-btn" onclick="navigate('checkout')">Tiến Hành Thanh Toán</button>
+      <button class="continue-btn" onclick="navigate('products')">Tiếp Tục Mua Sắm</button>
+      <div class="secure-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Thanh toán an toàn & bảo mật</div>
+    </div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p></div></footer>
+</div>
+
+<!-- CHECKOUT PAGE -->
+<div class="page" id="page-checkout">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1615529328331-f8917597711f?w=1800');"><div class="page-banner-content"><h1>Thanh Toán</h1><div class="breadcrumb">Trang Chủ <span>›</span> Giỏ Hàng <span>›</span> Thanh Toán</div></div></div>
+  <div class="checkout-section">
+    <div>
+      <div class="checkout-step" data-reveal>
+        <div class="step-header"><div class="step-num">1</div><div class="step-title">Thông Tin Liên Hệ</div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Email *</label><input class="form-input" id="ckEmail" type="email" placeholder="Nhập địa chỉ email"></div><div class="form-group"><label class="form-label">Số Điện Thoại *</label><input class="form-input" id="ckPhone" type="tel" placeholder="Nhập số điện thoại"></div></div>
+      </div>
+      <div class="checkout-step" data-reveal>
+        <div class="step-header"><div class="step-num">2</div><div class="step-title">Địa Chỉ Giao Hàng</div></div>
+        <div class="form-group"><label class="form-label">Họ Và Tên Người Nhận *</label><input class="form-input" id="ckName" type="text" placeholder="Nhập đầy đủ họ và tên"></div>
+        <div class="form-group"><label class="form-label">Địa Chỉ Chi Tiết *</label><input class="form-input" id="ckAddress" type="text" placeholder="Số nhà, tên đường, khu dân cư"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Tỉnh / Thành Phố *</label><select class="form-input" id="ckCity"><option value="">Chọn Tỉnh / Thành phố</option><option>Hồ Chí Minh</option><option>Hà Nội</option><option>Đà Nẵng</option></select></div><div class="form-group"><label class="form-label">Quận / Huyện *</label><input class="form-input" id="ckDistrict" placeholder="Quận / Huyện"></div></div>
+        <div class="form-group"><label class="form-label">Ghi Chú Giao Hàng (Tùy Chọn)</label><textarea class="form-input" id="ckNote" rows="3" placeholder="Ví dụ: Giao hàng giờ hành chính"></textarea></div>
+      </div>
+      <div class="checkout-step" data-reveal>
+        <div class="step-header"><div class="step-num">3</div><div class="step-title">Phương Thức Thanh Toán</div></div>
+        <div class="payment-option" onclick="selectPayment(this,'cod')"><div class="payment-radio"></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><div class="payment-label">Thanh toán khi nhận hàng (COD)</div></div>
+        <div class="payment-option selected" onclick="selectPayment(this,'bank_transfer')"><div class="payment-radio"></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><div class="payment-label">Chuyển khoản ngân hàng (Quét mã QR)</div><div style="margin-left:auto;"><div class="bank-details"><div class="qr-code">QR Code</div><div class="bank-info"><div><strong>Ngân hàng:</strong>Vietcombank</div><div><strong>Số TK:</strong>1234 567 890</div><div><strong>Chủ TK:</strong>CTY TNHH AN CUONG INT</div></div></div></div></div>
+        <div class="payment-option" onclick="selectPayment(this,'vnpay')"><div class="payment-radio"></div><div class="payment-icon" style="background:#0068ff;">VP</div><div class="payment-label">Thanh toán qua cổng VNPAY</div></div>
+        <div class="payment-option" onclick="selectPayment(this,'momo')"><div class="payment-radio"></div><div class="payment-icon" style="background:#a50064;">M</div><div class="payment-label">Thanh toán qua Ví MoMo</div></div>
+        <div class="payment-option" onclick="selectPayment(this,'zalopay')"><div class="payment-radio"></div><div class="payment-icon" style="background:#0068ff;">Z</div><div class="payment-label">Thanh toán qua ZaloPay</div></div>
+      </div>
+    </div>
+    <div class="order-summary-box" data-reveal>
+      <div class="cart-summary-title">Đơn Hàng Của Bạn</div>
+      <div class="order-items" id="checkoutOrderItems"></div>
+      <div class="summary-row"><span>Tạm tính</span><strong id="ckSubtotal">0 đ</strong></div>
+      <div class="summary-row"><span>Phí vận chuyển</span><strong style="color:green;">Miễn phí</strong></div>
+      <div class="summary-total"><span>Tổng cộng</span><span id="ckTotal">0 đ</span></div>
+      <button class="place-order-btn" onclick="placeOrder()">Đặt Hàng Ngay</button>
+      <div class="secure-badge" style="margin-top:14px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Thông tin được bảo mật hóa SSL.</div>
+    </div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;margin-top:20px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p></div></footer>
+</div>
+
+<!-- ACCOUNT PAGE -->
+<div class="page" id="page-account">
+  <div class="page-banner" style="background-image:url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1800');"><div class="page-banner-content"><h1>Tài Khoản</h1><div class="breadcrumb">Trang Chủ <span>›</span> Tài Khoản</div></div></div>
+  <div class="account-section">
+    <div class="account-box" data-reveal>
+      <div class="account-box-title">Đăng Nhập</div>
+      <div class="account-box-desc">Nếu bạn đã có tài khoản, vui lòng đăng nhập để tiếp tục.</div>
+      <div class="form-group"><label class="form-label">Email *</label><input class="form-input" id="loginEmail" type="email" placeholder="Nhập địa chỉ email"></div>
+      <div class="form-group"><label class="form-label">Mật Khẩu *</label><input class="form-input" id="loginPassword" type="password" placeholder="Nhập mật khẩu"></div>
+      <a class="forgot-link">Quên mật khẩu?</a>
+      <button class="submit-btn" style="margin-top:24px;" onclick="loginUser()">Đăng Nhập</button>
+      <div class="divider">Hoặc đăng nhập với</div>
+      <div class="social-login"><button class="social-btn" onclick="loginWithGoogle()"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>Google</button></div>
+    </div>
+    <div class="account-box" data-reveal data-reveal-delay="2">
+      <div class="account-box-title">Tạo Tài Khoản</div>
+      <div class="account-box-desc">Đăng ký thành viên để nhận các đặc quyền riêng biệt từ An Cuong Int.</div>
+      <div class="form-group"><label class="form-label">Họ Và Tên *</label><input class="form-input" id="regName" type="text" placeholder="Nhập họ và tên"></div>
+      <div class="form-group"><label class="form-label">Email *</label><input class="form-input" id="regEmail" type="email" placeholder="Nhập địa chỉ email"></div>
+      <div class="form-group"><label class="form-label">Mật Khẩu *</label><input class="form-input" id="regPassword" type="password" placeholder="Tạo mật khẩu (tối thiểu 6 ký tự)"></div>
+      <div class="benefits-list"><div class="benefit-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Quản lý và theo dõi đơn hàng dễ dàng</div><div class="benefit-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Lưu trữ danh sách sản phẩm yêu thích</div><div class="benefit-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Nhận thông tin ưu đãi mới nhất</div></div>
+      <button class="register-btn" onclick="registerUser()">Đăng Ký Ngay</button>
+    </div>
+  </div>
+  <footer style="background:var(--brown-dark);color:rgba(255,255,255,.8);padding:40px 80px 28px;margin-top:40px;"><div class="footer-bottom" style="border-top:none;padding-top:0;"><p>© 2025 An Cuong Interior. All rights reserved.</p></div></footer>
+</div>
+
+<script>
+// ============================================================
+// ⚙️ CẤU HÌNH SUPABASE — THAY 2 DÒNG NÀY
+// ============================================================
+const SUPABASE_URL = 'https://arcygcxfzyckglzxpgsq.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFyY3lnY3hmenlja2dsenhwZ3NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1NDkyNDksImV4cCI6MjA5NTEyNTI0OX0.SZ_rnI9wXj4QsjoIb2SAoef6RJR5bC6kx3SyTJOQroQ';
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Session ID cho giỏ hàng (không cần đăng nhập)
+const SESSION_ID = (() => {
+  let id = localStorage.getItem('ancuong_session');
+  if (!id) { id = 'sess_' + Math.random().toString(36).slice(2); localStorage.setItem('ancuong_session', id); }
+  return id;
+})();
+
+// ============================================================
+// HELPERS
+// ============================================================
+function formatPrice(n) { return Number(n).toLocaleString('vi-VN') + ' đ'; }
+function showToast(msg) {
+  const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), 3500);
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+let currentPage = 'home';
+const pageHandlers = {
+  home:     () => { renderHomeProducts(); renderHomeProjects(); },
+  products: () => renderProductsGrid(),
+  projects: () => renderProjects(''),
+  news:     () => renderNews(''),
+  cart:     () => renderCart(),
+  checkout: () => renderCheckoutSummary(),
+};
+
+function navigate(page) {
+  if (page === currentPage) return;
+  const tr = document.getElementById('page-transition');
+  tr.classList.add('active');
+  setTimeout(() => {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+    currentPage = page;
+    window.scrollTo(0, 0);
+    if (pageHandlers[page]) pageHandlers[page]();
+    setTimeout(initReveal, 200);
+    tr.classList.remove('active');
+  }, 350);
+}
+
+// ============================================================
+// SUPABASE: PRODUCTS
+// ============================================================
+let allProducts = [];
+let activeCategory = 'all';
+
+async function fetchProducts() {
+  const { data, error } = await db.from('products').select('*').eq('in_stock', true).order('created_at', { ascending: false });
+  if (error) { console.error('Lỗi tải sản phẩm:', error); return []; }
+  allProducts = data || [];
+  updateCategoryCounts();
+  return allProducts;
+}
+
+function updateCategoryCounts() {
+  const cats = ['sofa','ban','ghe','giuong','tu','den'];
+  document.getElementById('countAll').textContent = `(${allProducts.length})`;
+  cats.forEach(c => {
+    const el = document.getElementById('count' + c.charAt(0).toUpperCase() + c.slice(1));
+    if (el) el.textContent = `(${allProducts.filter(p => p.category === c).length})`;
+  });
+}
+
+function getFilteredProducts() {
+  let list = activeCategory === 'all' ? [...allProducts] : allProducts.filter(p => p.category === activeCategory);
+  const sort = document.getElementById('sortSelect')?.value || 'newest';
+  if (sort === 'price_asc') list.sort((a,b) => a.price - b.price);
+  else if (sort === 'price_desc') list.sort((a,b) => b.price - a.price);
+  return list;
+}
+
+function productCardHTML(p, i) {
+  return `
+    <div class="product-card" data-reveal data-reveal-delay="${(i%3)+1}">
+      <div class="product-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+      </div>
+      <div class="product-info">
+        <div class="product-category">${p.cat_label}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${formatPrice(p.price)}</div>
+        <button class="add-to-cart" onclick="addToCart(${p.id})">Thêm vào giỏ</button>
+      </div>
+    </div>`;
+}
+
+async function renderHomeProducts() {
+  const grid = document.getElementById('homeProductsGrid');
+  if (!grid) return;
+  if (!allProducts.length) await fetchProducts();
+  grid.innerHTML = allProducts.slice(0,3).map(productCardHTML).join('');
+  setTimeout(initReveal, 100);
+}
+
+async function renderProductsGrid() {
+  const grid = document.getElementById('productsGridMain');
+  if (!grid) return;
+  if (!allProducts.length) await fetchProducts();
+  const list = getFilteredProducts();
+  document.getElementById('productsCountLabel').textContent = `Hiển thị 1-${list.length} của ${list.length} sản phẩm`;
+  grid.innerHTML = list.length ? list.map(productCardHTML).join('') : '<p style="color:var(--text-muted);padding:40px;">Không có sản phẩm nào.</p>';
+  setTimeout(initReveal, 100);
+}
+
+function filterCategory(cat, el) {
+  activeCategory = cat;
+  document.querySelectorAll('.filter-item').forEach(fi => fi.classList.remove('active'));
+  el.classList.add('active');
+  renderProductsGrid();
+}
+
+// ============================================================
+// SUPABASE: PROJECTS
+// ============================================================
+let allProjects = [];
+
+async function fetchProjects() {
+  const { data, error } = await db.from('projects').select('*').order('created_at', { ascending: false });
+  if (error) { console.error('Lỗi tải dự án:', error); return []; }
+  allProjects = data || [];
+  return allProjects;
+}
+
+async function renderProjects(typeFilter) {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+  if (!allProjects.length) await fetchProjects();
+  const list = typeFilter ? allProjects.filter(p => p.type === typeFilter) : allProjects;
+  grid.innerHTML = list.map((p,i) => `
+    <div class="project-item" data-reveal data-reveal-delay="${(i%3)+1}">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      <div class="project-overlay">
+        <div class="project-name">${p.name}</div>
+        <div class="project-meta">${p.location} · ${p.area}</div>
+      </div>
+    </div>`).join('');
+  setTimeout(initReveal, 100);
+}
+
+async function renderHomeProjects() {
+  const grid = document.getElementById('homeProjectsGrid');
+  if (!grid) return;
+  if (!allProjects.length) await fetchProjects();
+  grid.innerHTML = allProjects.slice(0,3).map((p,i) => `
+    <div class="product-card" data-reveal data-reveal-delay="${i+1}" onclick="navigate('projects')">
+      <div class="product-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <div class="product-info">
+        <div class="product-category">${p.location}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${p.area}</div>
+      </div>
+    </div>`).join('');
+  setTimeout(initReveal, 100);
+}
+
+function setProjectTab(el, type) {
+  document.querySelectorAll('.projects-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderProjects(type);
+}
+
+// ============================================================
+// SUPABASE: NEWS
+// ============================================================
+let allNews = [];
+
+async function fetchNews() {
+  const { data, error } = await db.from('news').select('*').order('id', { ascending: false });
+  if (error) { console.error('Lỗi tải tin tức:', error); return []; }
+  allNews = data || [];
+  return allNews;
+}
+
+async function renderNews(catFilter) {
+  const grid = document.getElementById('newsGrid');
+  const featuredEl = document.getElementById('newsFeatured');
+  if (!allNews.length) await fetchNews();
+
+  const featured = allNews.find(n => n.featured);
+  if (featured && featuredEl) {
+    featuredEl.innerHTML = `
+      <div class="news-featured">
+        <div class="news-featured-img"><img src="${featured.img}" alt="${featured.title}"></div>
+        <div>
+          <div class="news-cat-date"><div class="news-cat">${featured.cat}</div><div class="news-date">${featured.date}</div></div>
+          <h2>${featured.title}</h2>
+          <div class="news-excerpt">${featured.excerpt}</div>
+          <button class="read-more">Đọc tiếp →</button>
+        </div>
+      </div>`;
+  }
+
+  const list = catFilter ? allNews.filter(n => n.cat === catFilter && !n.featured) : allNews.filter(n => !n.featured);
+  if (!grid) return;
+  grid.innerHTML = list.map((n,i) => `
+    <div class="news-card" data-reveal data-reveal-delay="${(i%3)+1}">
+      <div class="news-card-img"><img src="${n.img}" alt="${n.title}" loading="lazy"></div>
+      <div class="news-cat-date"><div class="news-cat">${n.cat}</div><div class="news-date">${n.date}</div></div>
+      <h3>${n.title}</h3>
+      <p>${n.excerpt}</p>
+      <button class="read-more">Khám phá →</button>
+    </div>`).join('');
+  setTimeout(initReveal, 100);
+}
+
+function filterNews(cat, el) {
+  document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderNews(cat);
+}
+
+// ============================================================
+// SUPABASE: CART
+// ============================================================
+let cartCache = [];
+
+async function fetchCart() {
+  const { data, error } = await db
+    .from('cart_items')
+    .select('*, products(*)')
+    .eq('session_id', SESSION_ID);
+  if (error) { console.error('Lỗi giỏ hàng:', error); return []; }
+  cartCache = data || [];
+  return cartCache;
+}
+
+async function addToCart(productId) {
+  // Kiểm tra đã có chưa
+  const { data: existing } = await db
+    .from('cart_items')
+    .select('id, qty')
+    .eq('session_id', SESSION_ID)
+    .eq('product_id', productId)
+    .single();
+
+  if (existing) {
+    await db.from('cart_items').update({ qty: existing.qty + 1 }).eq('id', existing.id);
+  } else {
+    await db.from('cart_items').insert({ session_id: SESSION_ID, product_id: productId, qty: 1 });
+  }
+  await updateCartBadge();
+  const p = allProducts.find(x => x.id === productId);
+  showToast(`Đã thêm "${p?.name}" vào giỏ hàng`);
+}
+
+async function updateCartBadge() {
+  const { data } = await db.from('cart_items').select('qty').eq('session_id', SESSION_ID);
+  const total = (data || []).reduce((s,i) => s + i.qty, 0);
+  document.getElementById('cartBadge').textContent = total;
+}
+
+async function renderCart() {
+  const container = document.getElementById('cartItems');
+  if (!container) return;
+  container.innerHTML = '<div class="loading-spinner">Đang tải giỏ hàng</div>';
+  await fetchCart();
+  if (!cartCache.length) {
+    container.innerHTML = '<p style="text-align:center;padding:60px;color:var(--text-muted);">Giỏ hàng của bạn đang trống.</p>';
+    document.getElementById('cartSubtotal').textContent = '0 đ';
+    document.getElementById('cartTotal').textContent = '0 đ';
+    return;
+  }
+  container.innerHTML = cartCache.map(item => `
+    <div class="cart-item" data-reveal>
+      <div class="cart-item-info">
+        <img class="cart-item-img" src="${item.products.img}" alt="${item.products.name}">
+        <div>
+          <div class="cart-item-name">${item.products.name}</div>
+          <div class="cart-item-meta">${item.products.cat_label}</div>
+          <div class="cart-item-price-unit">${formatPrice(item.products.price)}</div>
+        </div>
+      </div>
+      <div><div class="qty-control">
+        <button class="qty-btn" onclick="updateCartQty(${item.id}, ${item.qty - 1})">−</button>
+        <input class="qty-input" type="number" value="${item.qty}" min="1" onchange="updateCartQty(${item.id}, this.value)">
+        <button class="qty-btn" onclick="updateCartQty(${item.id}, ${item.qty + 1})">+</button>
+      </div></div>
+      <div class="cart-total-price">${formatPrice(item.products.price * item.qty)}</div>
+      <button class="delete-btn" onclick="removeCartItem(${item.id})">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </button>
+    </div>`).join('');
+  const total = cartCache.reduce((s,i) => s + i.products.price * i.qty, 0);
+  document.getElementById('cartSubtotal').textContent = formatPrice(total);
+  document.getElementById('cartTotal').textContent = formatPrice(total);
+  setTimeout(initReveal, 100);
+}
+
+async function updateCartQty(cartItemId, newQty) {
+  const qty = Math.max(1, parseInt(newQty) || 1);
+  await db.from('cart_items').update({ qty }).eq('id', cartItemId);
+  await renderCart();
+  await updateCartBadge();
+}
+
+async function removeCartItem(cartItemId) {
+  await db.from('cart_items').delete().eq('id', cartItemId);
+  await renderCart();
+  await updateCartBadge();
+}
+
+// ============================================================
+// SUPABASE: CHECKOUT
+// ============================================================
+let selectedPayment = 'bank_transfer';
+
+function selectPayment(el, method) {
+  document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPayment = method;
+}
+
+async function renderCheckoutSummary() {
+  await fetchCart();
+  const itemsEl = document.getElementById('checkoutOrderItems');
+  if (!itemsEl) return;
+  itemsEl.innerHTML = cartCache.map(item => `
+    <div class="order-item">
+      <img class="order-item-img" src="${item.products.img}" alt="${item.products.name}">
+      <div class="order-item-info"><div class="order-item-name">${item.products.name}</div><div class="order-item-detail">SL: ${item.qty}</div></div>
+      <div class="order-item-price">${formatPrice(item.products.price * item.qty)}</div>
+    </div>`).join('');
+  const total = cartCache.reduce((s,i) => s + i.products.price * i.qty, 0);
+  document.getElementById('ckSubtotal').textContent = formatPrice(total);
+  document.getElementById('ckTotal').textContent = formatPrice(total);
+}
+
+async function placeOrder() {
+  const name = document.getElementById('ckName')?.value.trim();
+  const phone = document.getElementById('ckPhone')?.value.trim();
+  const email = document.getElementById('ckEmail')?.value.trim();
+  const address = document.getElementById('ckAddress')?.value.trim();
+  if (!name || !phone || !email || !address) { showToast('Vui lòng điền đầy đủ thông tin bắt buộc!'); return; }
+
+  const total = cartCache.reduce((s,i) => s + i.products.price * i.qty, 0);
+  const { data: order, error: orderErr } = await db.from('orders').insert({
+    session_id: SESSION_ID, full_name: name, phone, email, address,
+    city: document.getElementById('ckCity')?.value,
+    district: document.getElementById('ckDistrict')?.value,
+    note: document.getElementById('ckNote')?.value,
+    payment_method: selectedPayment,
+    total_amount: total
+  }).select().single();
+
+  if (orderErr) { showToast('Có lỗi xảy ra. Vui lòng thử lại!'); console.error(orderErr); return; }
+
+  // Lưu order_items
+  const items = cartCache.map(i => ({
+    order_id: order.id, product_id: i.product_id,
+    name: i.products.name, price: i.products.price, qty: i.qty, img: i.products.img
+  }));
+  await db.from('order_items').insert(items);
+
+  // Xóa giỏ hàng
+  await db.from('cart_items').delete().eq('session_id', SESSION_ID);
+  cartCache = [];
+  await updateCartBadge();
+
+  showToast(`🎉 Đặt hàng thành công! Mã đơn: ${order.order_code}`);
+  setTimeout(() => navigate('home'), 2000);
+}
+
+// ============================================================
+// SUPABASE: CONTACT
+// ============================================================
+async function submitContact() {
+  const name = document.getElementById('contactName')?.value.trim();
+  const phone = document.getElementById('contactPhone')?.value.trim();
+  const email = document.getElementById('contactEmail')?.value.trim();
+  const message = document.getElementById('contactMessage')?.value.trim();
+  if (!name || !phone || !email || !message) { showToast('Vui lòng điền đầy đủ thông tin!'); return; }
+
+  const { error } = await db.from('contact_requests').insert({
+    full_name: name, phone, email,
+    subject: document.getElementById('contactSubject')?.value,
+    message
+  });
+  if (error) { showToast('Có lỗi xảy ra. Vui lòng thử lại!'); return; }
+  showToast('Đã gửi yêu cầu thành công! Chúng tôi sẽ liên hệ trong 24h.');
+  ['contactName','contactPhone','contactEmail','contactMessage'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+}
+
+// ============================================================
+// SUPABASE AUTH
+// ============================================================
+async function loginUser() {
+  const email = document.getElementById('loginEmail')?.value;
+  const password = document.getElementById('loginPassword')?.value;
+  if (!email || !password) { showToast('Vui lòng nhập email và mật khẩu!'); return; }
+  const { error } = await db.auth.signInWithPassword({ email, password });
+  if (error) { showToast('Email hoặc mật khẩu không đúng!'); }
+  else { showToast('Đăng nhập thành công!'); navigate('home'); }
+}
+
+async function registerUser() {
+  const email = document.getElementById('regEmail')?.value;
+  const password = document.getElementById('regPassword')?.value;
+  const name = document.getElementById('regName')?.value;
+  if (!email || !password || !name) { showToast('Vui lòng điền đầy đủ thông tin!'); return; }
+  if (password.length < 6) { showToast('Mật khẩu phải có ít nhất 6 ký tự!'); return; }
+  const { error } = await db.auth.signUp({ email, password, options: { data: { full_name: name } } });
+  if (error) { showToast('Lỗi đăng ký: ' + error.message); }
+  else { showToast('Đăng ký thành công! Vui lòng kiểm tra email để xác nhận.'); }
+}
+
+async function loginWithGoogle() {
+  const { error } = await db.auth.signInWithOAuth({ provider: 'google' });
+  if (error) showToast('Lỗi đăng nhập Google: ' + error.message);
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+function openSearch() {
+  document.getElementById('searchOverlay').classList.add('active');
+  renderSearchDefault();
+  setTimeout(() => document.getElementById('searchInput').focus(), 200);
+}
+function closeSearch() { document.getElementById('searchOverlay').classList.remove('active'); }
+
+function renderSearchDefault() {
+  const grid = document.getElementById('searchResults');
+  const header = document.getElementById('searchResultCount');
+  const featured = allProducts.slice(0, 4);
+  header.textContent = `Sản phẩm nổi bật (${allProducts.length})`;
+  grid.innerHTML = featured.map(p => `
+    <div class="search-product-item" onclick="navigate('products');closeSearch();">
+      <img class="search-product-img" src="${p.img}" alt="${p.name}">
+      <div><div class="search-product-name">${p.name}</div><div class="search-product-price">${formatPrice(p.price)}</div></div>
+    </div>`).join('');
+}
+
+function handleSearch(val) {
+  const grid = document.getElementById('searchResults');
+  const header = document.getElementById('searchResultCount');
+  if (!val.trim()) { renderSearchDefault(); return; }
+  const results = allProducts.filter(p => p.name.toLowerCase().includes(val.toLowerCase())).slice(0,4);
+  header.textContent = `Kết quả tìm kiếm (${results.length})`;
+  grid.innerHTML = results.length
+    ? results.map(p => `<div class="search-product-item" onclick="navigate('products');closeSearch();"><img class="search-product-img" src="${p.img}" alt="${p.name}"><div><div class="search-product-name">${p.name}</div><div class="search-product-price">${formatPrice(p.price)}</div></div></div>`).join('')
+    : '<div style="color:var(--text-muted);font-size:13px;padding:16px;">Không tìm thấy sản phẩm nào.</div>';
+}
+
+document.getElementById('searchOverlay').addEventListener('click', function(e) { if (e.target === this) closeSearch(); });
+
+// ============================================================
+// SCROLL REVEAL & HEADER
+// ============================================================
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.page.active [data-reveal]').forEach(el => { el.classList.remove('revealed'); obs.observe(el); });
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', async () => {
+  await fetchProducts();
+  await fetchProjects();
+  await fetchNews();
+  await updateCartBadge();
+  renderHomeProducts();
+  renderHomeProjects();
+  renderSearchDefault();
+  setTimeout(initReveal, 200);
+});
+</script>
+</body>
+</html>
